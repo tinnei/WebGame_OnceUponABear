@@ -14,21 +14,15 @@
 <body>
     <div id="my_opening">
         <img src="images/meme.png" style="float:left, height:200px">
-        <div class="textbox"><h1>Yo Welcome to the Forest. <br>Beware, trees are not your friend.<br> You know who DDoSki is. <br>Go find him.</h1></div>
        <button class="my_popup_close" id="close1">X</button>
     </div>
 
-    <div class="myScore"> Score: 00</div>
+    <div class="myScore"> Score: 05</div>
     <div class="myLevel"> Level: 01</div>
 
     <div class="mainbody">
-<!--         <img src="bear.gif" class="bears" alt="Bub 1" />
-        <img src="bear.gif" class="bears" alt="Bub 2" />
-        <img src="bear.gif" class="bears" alt="Bub 3" /> -->
     </div>
 
-    <!-- <button class="my_popup_open">Open popup</button> -->
-    
     <div id="my_popup">
         <img src="images/brofist.png" style="float:left">
         <h1>You did it! On to the next (harderrrrr) level, Bro!</h1>
@@ -38,6 +32,9 @@
     <div id="my_closing">
         <img src="images/brofist.png" style="float:left">
         <h1>Bro, You are really good with that mouse! Connect us!</h1>
+        <a href="https://www.linkedin.com/in/tinneipang"><h1>Tinnei</h1></a>
+        <a href="https://www.linkedin.com/in/tinneipang"><h1>Anh</h1></a>
+
        <button class="my_popup_close" id="close2">X</button>
     </div>
 
@@ -59,7 +56,7 @@
     var counter = bearcounter; 
 
     //treecount
-    var treeNum = 50;
+    var treeNum = 100;
     var lvl = 1;
     
     // Generate Bear
@@ -81,8 +78,7 @@
                         generate_bear(bearcounter);
                         counter = bearcounter;
                         lvl++;
-                        if (lvl == 3) {
-                            alert("Done!!");
+                        if (lvl == 6) {
                             $('#my_closing').popup('show');
                             $('#close2').click(function(){
                                 $('#my_closing').popup('hide');
@@ -90,13 +86,20 @@
                         } else {
                             $('#my_popup').popup('show');
                         }
-                        $('.myLevel').html('Level: '+ lvl);
                         currScore = 5;
-                        $('.myScore').html('Score: '+ currScore);
                         treeNum += 30;
                         generate_tree(treeNum);
                     }
-                $('.myScore').html('Score: '+ currScore);
+                if (currScore < 10) {
+                    $('.myScore').html('Score: 0'+ currScore);
+                } else {
+                    $('.myScore').html('Score: '+ currScore);
+                }
+                if (lvl < 10) {
+                    $('.myLevel').html('Level: 0'+ lvl);
+                } else {
+                    $('.myLevel').html('Level: '+ lvl);
+                }
             });
             
         }
@@ -116,12 +119,21 @@
             // Tree Click
             p.click(function(){
                 $(this).movingBubble('stop').fadeOut(200);
-                currScore -= lvl;
-                $('.myScore').html('Score: '+currScore);
+                currScore -= lvl*2;
                 if (currScore < 0) {
-                    alert("Yo! You went to the negative, stop sucking! fool.");
+                    alert("Yo! You went to the negative, stop sucking! fool. Back to level 1.");
+                    // Restart
+                    lvl = 1; currScore = 5;
+                    $('.lvl').html('Level: 0'+ currScore);
+                    $('.myScore').html('Score: 0'+ currScore);
+                }
+                if (currScore < 10 && currScore > 0) {
+                    $('.myScore').html('Score: 0'+ currScore);
+                } else {
+                    $('.myScore').html('Score: '+ currScore);
                 }
             });
+           
         }
     }
     generate_tree(treeNum);
