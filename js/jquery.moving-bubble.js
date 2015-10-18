@@ -4,8 +4,8 @@
     {
         init: function (options) {
             opts = $.extend({ addCss: true, //if set to false you have to add 'display:block;position:absolute;' to the css of the moving object
-                maxHeight: (window.innerHeight), //height bound for moving
-                maxWidth: (window.innerWidth), //width bound for moving
+                maxHeight: (window.innerHeight - 180), //height bound for moving
+                maxWidth: (window.innerWidth - 150), //width bound for moving
                 minDuration: 4000, //minimun length of animation; higher = move slower
                 deltaDuration: 5000 //maximum random number to be added to the minDuration
             }, options);

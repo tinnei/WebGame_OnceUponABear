@@ -30,11 +30,10 @@
     </div>
 
     <div id="my_closing">
-        <img src="images/brofist.png" style="float:left">
+        <img src="images/thumbsup.png" style="float:left">
         <h1>Bro, You are really good with that mouse! Connect us!</h1>
         <a href="https://www.linkedin.com/in/tinneipang"><h1>Tinnei</h1></a>
         <a href="https://www.linkedin.com/in/tinneipang"><h1>Anh</h1></a>
-
        <button class="my_popup_close" id="close2">X</button>
     </div>
 
@@ -121,8 +120,13 @@
                 $(this).movingBubble('stop').fadeOut(200);
                 currScore -= lvl*2;
                 if (currScore < 0) {
-                    alert("Yo! You went to the negative, stop sucking! fool. Back to level 1.");
+                    // alert("Yo! You went to the negative, stop sucking! fool. Back to level 1.");
                     // Restart
+
+                    $('#my_closing').popup('show');
+                            $('#close2').click(function(){
+                                $('#my_closing').popup('hide');
+                            })
                     lvl = 1; currScore = 5;
                     $('.lvl').html('Level: 0'+ currScore);
                     $('.myScore').html('Score: 0'+ currScore);
